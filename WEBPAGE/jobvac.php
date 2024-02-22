@@ -3,42 +3,16 @@
 
 <head>
     <title>CAGAYAN DE ORO COLLEGE - PHINMA EDUCATION</title>
-    <link rel="stylesheet" href="style4.css" />
+    <link rel="stylesheet" href="jobvac.css" />
     <!-- Add Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-    /* Add some custom styles for the icon button*/
-    .sign-in a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 160px;
-        height: 40px;
-        padding: 0;
-        background-color: #3498db;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        font-size: 16px;
-        font-weight: bold;
-    }
+        /* Add some custom styles for the icon button*/
 
-    .sign-in a:hover {
-        background-color: #2980b9;
-    }
-
-    /* Style the arrow icon*/
-    .sign-in a i {
-        margin-left: 5px;
-        font-size: 18px;
-        transition: transform 0.3s;
-    }
-
-    .sign-in a:hover i {
-        transform: translateX(2px);
-    }
-</style>
+        .job-image {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -49,26 +23,21 @@
                 <input class="srch" type="search" name="" placeholder="Type to text" />
                 <button class="btn">Search</button>
             </div>
-            <div class="sign-in">
-                <!-- Use the i tag with the appropriate Font Awesome class for the arrow-right icon -->
-                <a href="login.php"><i class="fas fa-arrow-right"></i> Sign In</a>
-            </div>
             <img src="logo.jpg" alt="logo" />
             <h2 class="page-title">PHINMA COC SCHOOL JOB LISTINGS</h2>
             <div class="menu">
                 <ul>
                     <li><a href="/" class="active">HOME</a></li>
                     <li><a href="about.html">ABOUT US</a></li>
-                    <li><a href="jobvac.html">JOB VACANCIES</a></li>
+                    <li><a href="jobvac.php">JOB VACANCIES</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
                 </ul>
             </div>
         </div>
     </header>
 
-
     <main>
-        <div class="job">JOB OPENINGS</div>
+        <div class="job">Job Openings</div>
         <div class="green-background"></div>
         <section class="section">
 
@@ -81,14 +50,23 @@
 
             foreach ($jobVacancies as $job) {
                 echo '<div class="vaclist">' .
-                     '<h2>' . $job['position'] . '</h2>' .
-                     '<p>Description:</p>' .
-                     '<p>' . $job['description'] . '</p>' .
-                     '<a href="jobvac.php?delete_id=' . $job['id'] . '" class="vac-listing-buttons">DELETE JOB</a>' .
-                     '</div>';
+                    '<h2>' . $job['position'] . '</h2>' .
+                    '<p>Description:</p>' .
+                    '<p>' . $job['description'] . '</p>';
+
+                // Check if a photo exists for the job
+                  // Check if a photo exists for the job
+                  if (!empty($job['photo'])) {
+                    echo '<img src="uploads/' . $job['photo'] . '" alt="Job Photo" class="job-image">';
+                }
+
+                // Connect the Quick Apply button to form.php
+                echo '<a href="form.php" class="vac-listing-buttons">Quick Apply</a>' .
+                    '</div>';
             }
             ?>
 
+            <!-- Additional job listings -->
             <div class="vaclist">
                 <h2>NURSING FACULTY</h2>
                 <p>Description:</p>
@@ -97,7 +75,7 @@
                 <p>• Experience in the academe is an advantage</p>
                 <p>• Excellent in teaching, interpersonal relations and communication</p>
                 <p>• Dynamic and Flexible</p>
-                <a href="form.php" class="vac-listing-buttons">QUICK APPLY</a>
+                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
             </div>
 
             <div class="vaclist">
@@ -108,7 +86,7 @@
                 <p>• Experience in the academe is an advantage</p>
                 <p>• Dynamic and Flexible</p>
                 <p>• For Full Time</p>
-                <a href="form.php" class="vac-listing-buttons">QUICK APPLY</a>
+                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
             </div>
 
             <div class="vaclist">
@@ -119,10 +97,11 @@
                 <p>• Experience in the academe is an advantage </p>
                 <p>• Excellent in teaching, interpersonal relations and communication </p>
                 <p>• Dynamic and Flexible</p>
-                <a href="form.php" class="vac-listing-buttons">QUICK APPLY</a>
+                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
             </div>
 
         </section>
     </main>
 </body>
+
 </html>
