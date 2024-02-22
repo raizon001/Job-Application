@@ -24,8 +24,7 @@
             padding: 10px 0;
             text-align: center;
             animation: fadeInDown 0.8s ease-out;
-}
-
+        }
 
         main {
             padding: 20px;
@@ -123,7 +122,7 @@
 
 <body>
 
-<header>
+    <header>
         <div class="container">
             <h1>Admin Panel</h1>
         </div>
@@ -144,61 +143,55 @@
             }
             ?>
 
-            <section id="job-operations">
-                <h2>Job Operations</h2>
-
-                <?php
-                // Include the PHP file with backend operations
-                include 'job_operations.php';
-
-                // Check if the form is submitted for adding, deleting, or editing a job vacancy
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    // ... (same as in your code)
-                }
-                ?>
-
+            <section id="quick-add">
+                <h2>Quick Add</h2>
                 <form action="admin.php" method="post" enctype="multipart/form-data">
-                    <label for="operation">Operation:</label>
-                    <select id="operation" name="operation" required>
-                        <option value="add">Quick Apply</option>
-                        <option value="delete">Delete Job</option>
-                        <option value="edit">Edit Job</option>
-                    </select>
+                    <!-- Quick Add Form Fields -->
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" name="position" required>
 
-                    <div id="add-job-fields">
-                        <label for="position">Position:</label>
-                        <input type="text" id="position" name="position" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
 
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="4" required></textarea>
+                    <label for="photo">Upload Photo:</label>
+                    <input type="file" name="photo" id="photo">
 
-                        <label for="photo">Upload Photo:</label>
-                        <input type="file" name="photo" id="photo">
-                    </div>
-
-                    <div id="delete-job-fields">
-                        <label for="delete_id">Job ID to Delete:</label>
-                        <input type="text" id="delete_id" name="delete_id" required>
-                    </div>
-
-                    <div id="edit-job-fields">
-                        <label for="edit_id">Job ID to Edit:</label>
-                        <input type="text" id="edit_id" name="edit_id" required>
-
-                        <label for="edit_position">New Position:</label>
-                        <input type="text" id="edit_position" name="edit_position">
-
-                        <label for="edit_description">New Description:</label>
-                        <textarea id="edit_description" name="edit_description" rows="4"></textarea>
-                    </div>
-
-                    <button type="submit">Perform Operation</button>
+                    <button type="submit">Add Job</button>
                 </form>
             </section>
+
+            <section id="edit-job">
+                <h2>Edit Job</h2>
+                <form action="admin.php" method="post" enctype="multipart/form-data">
+                    <!-- Edit Job Form Fields -->
+                    <label for="edit_id">Job ID to Edit:</label>
+                    <input type="text" id="edit_id" name="edit_id" required>
+
+                    <label for="edit_position">New Position:</label>
+                    <input type="text" id="edit_position" name="edit_position">
+
+                    <label for="edit_description">New Description:</label>
+                    <textarea id="edit_description" name="edit_description" rows="4"></textarea>
+
+                    <button type="submit">Edit Job</button>
+                </form>
+            </section>
+
+            <section id="delete-job">
+                <h2>Delete Job</h2>
+                <form action="admin.php" method="post" enctype="multipart/form-data">
+                    <!-- Delete Job Form Fields -->
+                    <label for="delete_id">Job ID to Delete:</label>
+                    <input type="text" id="delete_id" name="delete_id" required>
+
+                    <button type="submit">Delete Job</button>
+                </form>
+            </section>
+
         </div>
     </main>
 
-    
+
 </body>
 
 </html>
