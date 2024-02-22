@@ -13,24 +13,36 @@
             max-width: 100%;
             height: auto;
         }
+
+        /* Added styles for the Sign In button */
+        .sign-in-button {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px; /* Added border-radius */
+        }
     </style>
 </head>
 
 <body>
     <header>
         <div class="main">
-            <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type to text" />
-                <button class="btn">Search</button>
-            </div>
             <img src="logo.jpg" alt="logo" />
             <h2 class="page-title">PHINMA COC SCHOOL JOB LISTINGS</h2>
             <div class="menu">
                 <ul>
-                    <li><a href="/" class="active">HOME</a></li>
+                    <li><a href="index.html" class="active">HOME</a></li>
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="jobvac.php">JOB VACANCIES</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="login.php" class="sign-in-button">SIGN IN</a></li>
                 </ul>
             </div>
         </div>
@@ -55,8 +67,7 @@
                     '<p>' . $job['description'] . '</p>';
 
                 // Check if a photo exists for the job
-                  // Check if a photo exists for the job
-                  if (!empty($job['photo'])) {
+                if (!empty($job['photo'])) {
                     echo '<img src="uploads/' . $job['photo'] . '" alt="Job Photo" class="job-image">';
                 }
 
@@ -65,6 +76,7 @@
                     '</div>';
             }
             ?>
+
 
             <!-- Additional job listings -->
             <div class="vaclist">
