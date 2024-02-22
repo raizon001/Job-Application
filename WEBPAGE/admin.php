@@ -123,7 +123,7 @@
 
 <body>
 
-    <header>
+<header>
         <div class="container">
             <h1>Admin Panel</h1>
         </div>
@@ -131,6 +131,19 @@
 
     <main>
         <div class="container">
+            <?php
+            session_start();
+
+            if (isset($_SESSION['username'])) {
+                echo '<p>Welcome, ' . $_SESSION['username'] . '!</p>';
+                echo '<form action="logout.php" method="post">
+                        <button type="submit" class="logout-button">Logout</button>
+                      </form>';
+            } else {
+                echo '<p>You are not logged in.</p>';
+            }
+            ?>
+
             <section id="job-operations">
                 <h2>Job Operations</h2>
 
