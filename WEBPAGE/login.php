@@ -1,51 +1,50 @@
 <?php
-session_start(); // Start a session for user authentication
+session_start();
 
-// Connect to your database
-$servername = "your_database_host";
-$username = "your_database_username";
-$password = "your_database_password";
-$dbname = "your_database_name";
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "user";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$data = mysqli_connect($host, $user, $password, $db);
+$hashedPassword = password_hash('1234', PASSWORD_DEFAULT);
+echo $hashedPassword;
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+
+if ($data === false) {
+    die("Connection error");
 }
 
-// Retrieve username and password from the login form
-$username = $_POST['username'];
-$password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($data, $_POST["username"]);
+    $password = mysqli_real_escape_string($data, $_POST["password"]);
 
-// Query to check if the user exists
-$sql = "SELECT id, username, password FROM users WHERE username = '$username'";
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM login WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($data, $sql);
 
-if ($result->num_rows > 0) {
-    // User found, check the password
-    $row = $result->fetch_assoc();
-    if (password_verify($password, $row['password'])) {
-        // Password is correct, set session variables and redirect to dashboard
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-        header("Location: dashboard.php");
-        exit();
+    if ($result) {
+        $row = mysqli_fetch_array($result);
+
+        if ($row) {
+            $_SESSION["username"] = $username;
+
+            if ($row["usertype"] == "user") {
+                header("location: userhomepage.php");
+                exit();
+            } elseif ($row["usertype"] == "admin") {
+                header("location: admin.php");
+                exit();
+            } else {
+                echo "Invalid usertype";
+            }
+        } else {
+            echo "Username or password incorrect";
+        }
     } else {
-        // Incorrect password
-        echo "Incorrect password";
+        echo "Query execution error: " . mysqli_error($data);
     }
-} else {
-    // User not found
-    echo "User not found";
 }
-
-// Close the database connection
-$conn->close();
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -53,51 +52,45 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="loginstyle.css" />  
+    <link rel="stylesheet" href="stylelog.css" />
     <title>Login Form</title>
 </head>
 <body>
     <main>
-    <header>
-
-            <img src="lag.png" alt="logo"> 
-    </header>
-    
-    <div class="Form-box">
-        <form class="Login-form">
-            <h1> Admin Login</h1>
-            <div class="input-box">
-                <input type="text" required>
-                <label>Username:</label>
-                <ion-icon name="mail-outline"></ion-icon>
+        <header>
+            <img src="lag.png" alt="logo">
+        </header>
+        <main>
+            <div class="Form-box">
+                <form class="Login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <h1>Admin Login</h1>
+                    <div class="input-box">
+                        <input type="text" name="username" required>
+                        <label>User:</label>
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" name="password" required>
+                        <label>Password:</label>
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                    </div>
+                    <div class="checkbox">
+                        <span>
+                            <input type="checkbox" id="login-checkbox">
+                            <label for="login-checkbox">Remember Me</label>
+                        </span>
+                        <h5>Forget password ?</h5>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <div class="goback-buttons">
+                        <a href="index.html" class="goback-button">Go Back &#x2190</a></h5>
+                    </div>
+                </form>
             </div>
-            <div class="input-box">
-                <input type="password" required>
-                <label>Password:</label>
-                <ion-icon name="lock-closed-outline"></ion-icon>
-            </div>
-            <div class="checkbox">
-                <span>
-                    <input type="checkbox" id="login-checkbox">
-                    <label for="login-checkbox">Remember Me</label>
-                </span>
-                <h5>Forget password ?</h5>
-            </div>
-
-            <div class="submitt-buttons"> 
-                <a href="admin.php" class="submit-button"> Submit</a></h5>
-             </div>
-            <div class="goback-buttons"> 
-               <a href="index.php" class="goback-button">Go Back &#x2190</a></h5>
-            </div>
-            </h5>
-        </form>
-        
-    </div>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="script.js"></script>
-</main>
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <script src="script.js"></script>
+        </main>
+    </main>
 </body>
 </html>
