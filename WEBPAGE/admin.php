@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css"> <!-- Add your custom stylesheets here -->
 
     <style>
+
+        
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f5f5f5;
@@ -23,20 +25,37 @@
             padding: 10px 0;
             text-align: center;
             animation: fadeInDown 0.8s ease-out;
+            background-image: linear-gradient(to left, rgb(7, 116, 25), rgb(216, 233, 218));
         }
 
+        h1{
+    font-size: 30px;
+    text-shadow: 2px 2px 5px rgb(65, 64, 64);
+    margin-left: 44%;
+    display: flex;
+    padding: 3px;
+    color: rgb(255, 255, 255);
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+        
+
         main {
-            padding: 20px;
+            padding: 3px;
             animation: fadeInUp 1s ease-out;
         }
 
         form {
-            margin-top: 20px;
+            margin-top: 3px;
             background-color: #fff;
-            padding: 20px;
+            padding: 5px;
+            font-weight: bold;
+            width: 70%;
+            margin-left: 15%;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1.2s ease-out;
+            margin-bottom; 10%;
         }
 
         label {
@@ -60,13 +79,15 @@
             color: #fff;
             padding: 10px 20px;
             border: none;
+           margin-left: 45%;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
+            font-weight: bold;
         }
 
         button:hover {
-            background-color: #005700;
+            background-color:#1cda7b;
         }
 
         footer {
@@ -79,6 +100,43 @@
             width: 100%;
             animation: fadeInUp 1s ease-out;
         }
+
+
+
+
+    .viewport-buttons {
+        position: absolute;
+        border: 1px solid #000000;
+        top: 20px; /* Adjust the top position as needed */
+        right: 20px; /* Adjust the right position as needed */
+        z-index: 1; /* Ensure it appears above other elements */
+    }
+
+    .viewport-button {
+        display: inline-block;
+        padding: 10px 10px;
+        font-size: 16px;
+        text-decoration: none;
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .viewport-button:hover {
+        background-color: #1cda7b;
+    }
+
+        header img {
+    margin-top: 15px;
+    float: left;
+    width: 340px;
+    margin-left: 3%;
+    margin-bottom: 1%;
+}
+
 
         /* Animations */
         @keyframes fadeIn {
@@ -116,14 +174,26 @@
                 transform: translateY(0);
             }
         }
+
+        
     </style>
+
+
 </head>
 
 <body>
 
+       
     <header>
+        
         <div class="container">
-            <h1>Admin Panel</h1>
+        <img src="lag.png" alt="logo">
+        
+            <h1>Admin Portal</h1>
+            <div class="viewport-buttons"> 
+                <a href="view.php" class="viewport-button"> View Applicants</a>
+                   </div>
+               
         </div>
     </header>
 
@@ -189,13 +259,15 @@
         
             }
             ?>
+            
 
                 <form action="admin.php" method="post" enctype="multipart/form-data">
                     <label for="operation">Operation:</label>
                     <select id="operation" name="operation" required>
-                        <option value="add">Quick Apply</option>
-                        <option value="delete">Delete Job</option>
+                        <option value="add">Add Application</option>
                         <option value="edit">Edit Job</option>
+                        <option value="delete">Delete Job</option>
+                        
                     </select>
 
                     <!-- Fields for adding a new job -->
@@ -211,12 +283,7 @@
                         <input type="file" name="photo" id="photo">
                     </div>
 
-                    <!-- Fields for deleting a job -->
-                    <div id="delete-job-fields">
-                        <label for="delete_id">Job ID to Delete:</label>
-                        <input type="text" id="delete_id" name="delete_id">
-                    </div>
-
+                   
                     <!-- Fields for editing a job -->
                     <div id="edit-job-fields">
                         <label for="edit_id">Job ID to Edit:</label>
@@ -228,6 +295,12 @@
                         <label for="edit_description">New Description:</label>
                         <textarea id="edit_description" name="edit_description" rows="4"></textarea>
                     </div>
+                     <!-- Fields for deleting a job -->
+                     <div id="delete-job-fields">
+                        <label for="delete_id">Job ID to Delete:</label>
+                        <input type="text" id="delete_id" name="delete_id">
+                    </div>
+
 
                     <button type="submit">Perform Operation</button>
                 </form>
