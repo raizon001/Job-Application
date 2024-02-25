@@ -16,15 +16,15 @@
 
         /* Added styles for the Sign In button */
         .sign-in-button {
-            background-color: #04AA6D;
+            background-color: green;
             border: none;
             color: white;
-            padding: 15px 32px;
+            padding: 5px 5px;
             text-align: center;
+            margin-left: -40%;
             text-decoration: none;
-            display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
+            margin: -10px 1px;
             cursor: pointer;
             border-radius: 8px; /* Added border-radius */
         }
@@ -34,6 +34,11 @@
 <body>
     <header>
         <div class="main">
+        <div class="search"> 
+        <h3> <input class="srch" type="search" name="" placeholder=" Type here"></h3>
+     </h3><a href="#"> <button class="btn" > Search </button></a></h3>
+         </div>
+
             <img src="logo.jpg" alt="logo" />
             <h2 class="page-title">PHINMA COC SCHOOL JOB LISTINGS</h2>
             <div class="menu">
@@ -42,7 +47,7 @@
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="jobvac.php">JOB VACANCIES</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
-                    <li><a href="login.php" class="sign-in-button">SIGN IN</a></li>
+                    <li><a href="login.php" class="sign-in-button"> <i class="fas fa-user"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +68,6 @@
             foreach ($jobVacancies as $job) {
                 echo '<div class="vaclist">' .
                     '<h2>' . $job['position'] . '</h2>' .
-                    '<p>Description:</p>' .
                     '<p>' . $job['description'] . '</p>';
 
                 // Check if a photo exists for the job
@@ -79,38 +83,6 @@
 
 
             <!-- Additional job listings -->
-            <div class="vaclist">
-                <h2>NURSING FACULTY</h2>
-                <p>Description:</p>
-                <p>• Bachelor's degree in Nursing</p>
-                <p>• Licensed is a must </p>
-                <p>• Experience in the academe is an advantage</p>
-                <p>• Excellent in teaching, interpersonal relations and communication</p>
-                <p>• Dynamic and Flexible</p>
-                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
-            </div>
-
-            <div class="vaclist">
-                <h2>MEDICAL TECHNICIAN FACULTY</h2>
-                <p>Description:</p>
-                <p>• Bachelor's degree in Medical Technician or Medical Science </p>
-                <p>• Licensed is a must </p>
-                <p>• Experience in the academe is an advantage</p>
-                <p>• Dynamic and Flexible</p>
-                <p>• For Full Time</p>
-                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
-            </div>
-
-            <div class="vaclist">
-                <h2>IT FACULTY</h2>
-                <p>Description:</p>
-                <p>• Bachelor degree in IT or other related course</p>
-                <p>• With a vertically aligned Masters "Full-fledged" or CAR is an advantage</p>
-                <p>• Experience in the academe is an advantage </p>
-                <p>• Excellent in teaching, interpersonal relations and communication </p>
-                <p>• Dynamic and Flexible</p>
-                <a href="form.php" class="vac-listing-buttons">Quick Apply</a>
-            </div>
 
         </section>
     </main>
