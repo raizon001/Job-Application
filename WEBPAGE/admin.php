@@ -102,11 +102,17 @@
         }
 
 
-
+        .viewport-buttons {
+        position: absolute;
+        top: 10px; /* Adjust the top position as needed */
+        right: 10px; /* Adjust the right position as needed */
+        z-index: 1; /* Ensure it appears above other elements */
+    }
 
     .viewport-buttons {
         position: absolute;
         border: 1px solid #000000;
+        border-radius:
         top: 20px; /* Adjust the top position as needed */
         right: 20px; /* Adjust the right position as needed */
         z-index: 1; /* Ensure it appears above other elements */
@@ -114,19 +120,18 @@
 
     .viewport-button {
         display: inline-block;
-        padding: 10px 10px;
+        padding: 5px 5px;
         font-size: 16px;
         text-decoration: none;
         background-color: transparent;
         color: #fff;
         border: none;
-        border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
 
     .viewport-button:hover {
-        background-color: #1cda7b;
+        background-color: black;
     }
 
         header img {
