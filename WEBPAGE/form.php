@@ -8,17 +8,11 @@ $message = ''; // Variable to store the pop-up message
 
 if (isset($_POST['submit'])) {
     $fullName = $_POST['fullName'];
-    $address = $_POST['address'];
+
     $jobRole = $_POST['jobRole'];
     $phoneNumber = $_POST['phoneNumber'];
     $email = $_POST['email'];
-    $dateOfBirth = $_POST['dateOfBirth'];
-    $schoolAttended = $_POST['schoolAttended'];
-    $degreeEarned = $_POST['degreeEarned'];
-    $fieldOfStudy = $_POST['fieldOfStudy'];
-    $technicalSkills = $_POST['technicalSkills'];
-    $softSkills = $_POST['softSkills'];
-    $personalStatement = $_POST['personalStatement'];
+
 
     $insert_query = mysqli_query($conn, "INSERT INTO `list` (
         full_name, address, job_role, phone_number, email_address, date_of_birth, 
@@ -58,14 +52,17 @@ if (isset($_POST['submit'])) {
                 <form method="post" action="form.php" class="application-form">
 
 
+                <div class="column">
+                        <h3>Personal information</h3>
+
                     <div class="form-control">
                         <label for="fullName">Full Name:</label>
                         <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
                     </div>
-
+                  
                     <div class="form-control">
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-control">
@@ -89,79 +86,15 @@ if (isset($_POST['submit'])) {
                         <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
                     </div>
 
-                    <div class="form-control">
-                        <label for="email">Email Address:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="form-control">
-                        <label for="dateOfBirth">Date of Birth:</label>
-                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
-                    </div>
-
-                    <div class="column">
-                        <h3>Educational Background</h3>
-
-                        <div class="form-control">
-                            <label for="schoolAttended">School Attended:</label>
-                            <input type="text" id="schoolAttended" name="schoolAttended" placeholder="Enter school name" required>
-                        </div>
-
-                        <div class="form-control">
-                            <label for="degreeEarned">Degree Earned:</label>
-                            <input type="text" id="degreeEarned" name="degreeEarned" placeholder="Enter degree" required>
-                        </div>
-
-                        <div class="form-control">
-                            <label for="fieldOfStudy">Field of Study:</label>
-                            <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="Enter major or field of study" required>
-                        </div>
-
                         <div class="form-control">
                             <label for="uploadTOR">Upload Your TOR:</label>
-                            <input type="file" id="uploadTOR" name="uploadTOR">
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <h3>Work Experience</h3>
-
-                        <div class="form-control">
-                            <label for="previousEmployee">Previous Employee:</label>
-                            <input type="text" id="previousEmployee" name="previousEmployee" placeholder="Enter previous employer" required>
+                            <input type="file" id="uploadTOR" name="In jpeg file">
                         </div>
 
-                        <div class="form-control">
-                            <label for="jobTitles">Job Titles:</label>
-                            <textarea id="jobTitles" name="jobTitles" placeholder="Enter job titles" required></textarea>
-                        </div>
 
                         <div class="form-control">
-                            <label for="jobResponsibilities">Job Responsibilities:</label>
-                            <textarea id="jobResponsibilities" name="jobResponsibilities" placeholder="Enter job responsibilities" required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <h3>Skills and Qualifications</h3>
-
-                        <div class="form-control">
-                            <label for="technicalSkills">Technical Skills:</label>
-                            <textarea id="technicalSkills" name="technicalSkills" placeholder="Enter technical skills" required></textarea>
-                        </div>
-
-                        <div class="form-control">
-                            <label for="softSkills">Soft Skills:</label>
-                            <textarea id="softSkills" name="softSkills" placeholder="Enter soft skills" required></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-control">
-                        <h3>Objective or Personal Statement</h3>
-
-                        <div class="form-control">
-                            <label for="personalStatement">Brief statement about career goals and skills:</label>
-                            <textarea id="personalStatement" name="personalStatement" placeholder="Enter personal statement" required></textarea>
+                            <label for="uploadTOR">Upload Your Resume:</label>
+                            <input type="file" id="uploadTOR" name="In pdf file">
                         </div>
                     </div>
 
