@@ -1,15 +1,10 @@
-CREATE TABLE list (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE form (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     full_name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    job_role VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20) NOT NULL,
     email_address VARCHAR(255) NOT NULL,
-    date_of_birth DATE NOT NULL,
-    school_attended VARCHAR(255) NOT NULL,
-    degree_earned VARCHAR(255) NOT NULL,
-    field_of_study VARCHAR(255) NOT NULL,
-    technical_skills TEXT NOT NULL,
-    soft_skills TEXT NOT NULL,
-    personal_statement TEXT NOT NULL
+    job_role VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    tor_file VARCHAR(255) NOT NULL,
+    resume_file VARCHAR(255) NOT NULL,
+    submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
